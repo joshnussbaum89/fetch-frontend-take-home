@@ -1,0 +1,9 @@
+.navigation ul {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.navigation .login a {
+  background-color: var(--color-purple);
+  color: var(--color-white);
+}
