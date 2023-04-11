@@ -20,12 +20,11 @@ export default function Navigation() {
           </Link>
         </li>
         <li className={styles.login}>
-          {!auth.isLoggedIn && (
+          {!auth.isLoggedIn ? (
             <Link className="fetch-cta" href="/login">
               Login
             </Link>
-          )}
-          {auth.isLoggedIn && (
+          ) : (
             <Link className="fetch-cta" href="/" onClick={() => auth.logout()}>
               Logout
             </Link>

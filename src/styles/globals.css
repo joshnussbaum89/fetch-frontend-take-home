@@ -8,11 +8,14 @@
   --size-extra-large: 3rem;
   --size-mega-large: 4rem;
 
-  --color-black: #1e1e1e;
-  --color-white: #fcfcfc;
+  --color-black: #11052f;
+  --color-white: #ffffff;
   --color-white-transparent: #fcfcfcee;
   --color-grey: #9c9c9c;
-  --color-purple: #805df3;
+  --color-purple: #2e1679;
+  --color-light-purple: #a47ad1;
+  --color-yellow: #ffb251;
+  --color-light-yellow: #ffc051;
 
   --transition-normal: all 0.3s ease-in-out;
 
@@ -31,7 +34,6 @@ body {
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 1px;

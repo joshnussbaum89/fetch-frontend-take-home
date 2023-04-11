@@ -7,7 +7,7 @@ export function AuthProvider({ children }: React.PropsWithChildren<{}>) {
   return <authContext.Provider value={auth}>{children}</authContext.Provider>
 }
 
-export const useAuth = () => {
+export function useAuth() {
   return useContext(authContext)
 }
 
@@ -46,7 +46,6 @@ function useProvideAuth() {
     const URL = 'https://frontend-take-home-service.fetch.com/auth/logout'
     const API_KEY =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzgzMDU2MTF9.Ky49nXH6qgHJQ0CBsZGYsP7_Is2am3u5j3RAdEl457s'
-
     const options = {
       method: 'POST',
       headers: {

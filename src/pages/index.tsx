@@ -1,7 +1,9 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
-import LoginForm from '@/components/Global/LoginForm/LoginForm'
 import SectionHeader from '@/components/Global/SectionHeader/SectionHeader'
+
+import styles from '@/styles/Home.module.css'
 
 interface AuthProps {
   login: Function
@@ -20,8 +22,19 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      {!auth.isLoggedIn && <LoginForm />}
-      {auth.isLoggedIn && <SectionHeader text="Logged In!" />}
+      {!auth.isLoggedIn ? (
+        <>
+          <SectionHeader text="Welcome To Pup Finder" />
+          <Link className={`fetch-cta ${styles.login}`} href="/login">
+            Login to get started
+          </Link>
+        </>
+      ) : (
+        <>
+          <SectionHeader text="Find Your New Best Friend!" />
+          <p>Logged In!</p>
+        </>
+      )}
     </>
   )
 }

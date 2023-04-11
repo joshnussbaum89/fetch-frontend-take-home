@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
+import { useRouter } from 'next/router'
 import SectionHeader from '../SectionHeader/SectionHeader'
 import styles from './LoginForm.module.css'
 
@@ -14,13 +15,17 @@ export default function LoginForm() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
-  // Get login function and isLoggedIn state from useAuth hook
+  // Get auth context
   const auth = useAuth() as AuthProps
+  const router = useRouter()
 
-  // Submit form
-  const handleSubmit = (event: React.FormEvent<EventTarget>) => {
+  // Login user and redirect to home page
+  const handleSubmit = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault()
-    auth.login(name, email)
+
+    await auth.login(name, email).then(() => {
+      router.push('/')
+    })
   }
 
   // Handle name changes
@@ -38,8 +43,8 @@ export default function LoginForm() {
       <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input
-          type="text"
           id="name"
+          type="text"
           value={name}
           placeholder="John Doe"
           onChange={handleNameChange}
@@ -47,8 +52,8 @@ export default function LoginForm() {
         />
         <label htmlFor="email">Email</label>
         <input
-          type="email"
           id="email"
+          type="email"
           value={email}
           placeholder="johndoe@gmail.com"
           onChange={handleEmailChange}

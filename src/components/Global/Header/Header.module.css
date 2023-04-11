@@ -1,4 +1,11 @@
 .header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   -webkit-backdrop-filter: saturate(180%) blur(5px);
   backdrop-filter: saturate(180%) blur(5px);
   box-shadow: 0 0 2px var(--color-grey);
@@ -8,7 +15,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto 2rem;
   width: 100%;
   max-width: var(--site-max-width);
   padding: 1rem;
