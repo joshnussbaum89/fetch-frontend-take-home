@@ -22,11 +22,11 @@ export default function Navigation() {
         <li className={styles.login}>
           {!auth.isLoggedIn ? (
             <Link className="fetch-cta" href="/login">
-              Login
+              Log in
             </Link>
           ) : (
             <Link className="fetch-cta" href="/" onClick={() => auth.logout()}>
-              Logout
+              Log out
             </Link>
           )}
         </li>

@@ -1,8 +1,8 @@
 .button {
+  margin: auto 0;
+  font-size: var(--size-small);
   color: var(--color-white);
   background-color: var(--color-purple);
-  font-size: var(--size-small);
-  margin: auto 0;
 }
 
 .filterContainer {

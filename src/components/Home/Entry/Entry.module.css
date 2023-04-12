@@ -1,0 +1,6 @@
+.button {
+  margin: auto 0;
+  font-size: var(--size-small);
+  color: var(--color-white);
+  background-color: var(--color-purple);
+}
