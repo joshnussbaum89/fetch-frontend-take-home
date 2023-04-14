@@ -64,6 +64,10 @@ ul {
   list-style: none;
 }
 
+select {
+  padding: 0.2rem;
+}
+
 .fetch-cta {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -71,6 +75,12 @@ ul {
   border-radius: 1.2rem;
   transition: var(--transition-normal);
   cursor: pointer;
+}
+
+.button-primary {
+  font-size: var(--size-small);
+  background-color: var(--color-purple);
+  color: var(--color-white);
 }
 
 /* Animations */

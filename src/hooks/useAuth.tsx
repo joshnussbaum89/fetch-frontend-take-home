@@ -1,4 +1,5 @@
 import React, { useState, useContext, createContext } from 'react'
+import { FETCH_URL, FETCH_API_KEY } from '../utils/constants'
 
 const authContext = createContext({})
 
@@ -14,14 +15,14 @@ export function useAuth() {
 function useProvideAuth() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const login = async (name: string, email: string) => {
-    const URL = `${process.env.NEXT_PUBLIC_FETCH_URL}/auth/login`
+  const URL = `${FETCH_URL}/auth/login`
 
+  const login = async (name: string, email: string) => {
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'fetch-api-key': process.env.NEXT_PUBLIC_FETCH_API_KEY,
+        'fetch-api-key': FETCH_API_KEY,
       },
       body: JSON.stringify({ name, email }),
       credentials: 'include',
@@ -41,14 +42,11 @@ function useProvideAuth() {
   }
 
   const logout = async () => {
-    const URL = `${process.env.NEXT_PUBLIC_FETCH_URL}/auth/logout`
+    const URL = `${FETCH_URL}/auth/logout`
 
     const options = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'fetch-api-key': process.env.NEXT_PUBLIC_FETCH_API_KEY,
-      },
+      headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
     } as RequestInit
 

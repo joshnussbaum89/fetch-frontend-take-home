@@ -1,20 +1,10 @@
-import LoginForm from '@/components/Global/LoginForm/LoginForm'
-import SectionHeader from '@/components/Global/SectionHeader/SectionHeader'
+import LoginForm from '@/components/LoginForm/LoginForm'
+import SectionHeader from '@/components/SectionHeader/SectionHeader'
 import { useAuth } from '@/hooks/useAuth'
-
-interface AuthProps {
-  login: Function
-  logout: Function
-  isLoggedIn: boolean
-}
+import { AuthProps } from '@/utils/types'
 
 export default function Login() {
   const auth = useAuth() as AuthProps
 
-  return (
-    <>
-      {!auth.isLoggedIn && <LoginForm />}
-      {auth.isLoggedIn && <SectionHeader text="Logged In!" />}
-    </>
-  )
+  return auth.isLoggedIn ? <SectionHeader text="Logged In!" /> : <LoginForm />
 }

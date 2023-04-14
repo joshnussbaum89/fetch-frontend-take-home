@@ -1,4 +1,4 @@
-import Layout from '@/components/Global/Layout/Layout'
+import Layout from '@/components/Layout/Layout'
 import '@/styles/globals.css'
 import { Varela_Round } from 'next/font/google'
 import { AuthProvider } from '@/hooks/useAuth'
@@ -13,6 +13,12 @@ export default function App({ Component, pageProps }: AppProps) {
       <style jsx global>{`
         body {
           font-family: ${varelaRound.style.fontFamily};
+        }
+
+        button,
+        select {
+          font-family: ${varelaRound.style.fontFamily};
+          letter-spacing: 1px;
         }
       `}</style>
       <Layout>

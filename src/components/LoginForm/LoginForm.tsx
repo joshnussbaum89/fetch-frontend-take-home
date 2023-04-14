@@ -11,29 +11,30 @@ interface AuthProps {
   isLoggedIn: boolean
 }
 
+/**
+ * Login Form to access protected pages
+ */
 export default function LoginForm() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
   // Get auth context
   const auth = useAuth() as AuthProps
+
+  // Get router context
   const router = useRouter()
 
-  // Login user and redirect to home page
+  // Login user and redirect to /dogs page
   const handleSubmit = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault()
-
-    await auth.login(name, email).then(() => {
-      router.push('/')
-    })
+    await auth.login(name, email).then(() => router.push('/dogs'))
   }
 
-  // Handle name changes
+  // Update name + email state on input change
   const handleNameChange = (event: React.FormEvent<EventTarget>) => {
     setName((event.target as HTMLInputElement).value)
   }
 
-  // Handle email changes
   const handleEmailChange = (event: React.FormEvent<EventTarget>) => {
     setEmail((event.target as HTMLInputElement).value)
   }
