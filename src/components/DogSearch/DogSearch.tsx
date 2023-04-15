@@ -11,6 +11,7 @@ type DogSearchProps = {
   handleBreedValueChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
   handleOrderValueChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   sortOrderValue: string
+  sortBreedValue: string
   favoriteDogIds: string[]
   setFavoriteDogIds: React.Dispatch<React.SetStateAction<string[]>>
   pagination: (url: string) => void
@@ -22,6 +23,7 @@ type FiltersProps = {
   handleBreedValueChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
   handleOrderValueChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   sortOrderValue: string
+  sortBreedValue: string
 }
 
 type NavigationButtonProps = {
@@ -37,6 +39,7 @@ export default function DogSearch({
   handleBreedValueChange,
   handleOrderValueChange,
   sortOrderValue,
+  sortBreedValue,
   favoriteDogIds,
   setFavoriteDogIds,
   pagination,
@@ -68,6 +71,7 @@ export default function DogSearch({
           handleBreedValueChange={handleBreedValueChange}
           handleOrderValueChange={handleOrderValueChange}
           sortOrderValue={sortOrderValue}
+          sortBreedValue={sortBreedValue}
           breeds={breeds}
         />
         <NavigationButton
@@ -91,6 +95,7 @@ function Filters({
   handleBreedValueChange,
   handleOrderValueChange,
   sortOrderValue,
+  sortBreedValue,
   breeds,
 }: FiltersProps) {
   return (
@@ -103,7 +108,9 @@ function Filters({
               id="breed"
               className={styles.select}
               onChange={handleBreedValueChange}
+              value={sortBreedValue}
             >
+              <option value="All Breeds">All Breeds</option>
               {breeds.map((breed) => (
                 <option key={breed} value={breed}>
                   {breed}

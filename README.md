@@ -14,7 +14,6 @@ This is a simple web application build with Next JS that allows users to search 
 ## Features
 
 - User authentication
-- Users can filter dogs by breed
-- Results are be paginated
-- Results are sorted alphabetically by breed by default. Users can modify this sort to be ascending or descending.
+- Users can filter dogs by breed or sort all dogs by breed alphabetically
+- Results are paginated
 - All fields of the Dog object (except for id) are presented in some form

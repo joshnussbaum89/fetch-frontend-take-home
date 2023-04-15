@@ -1,7 +1,7 @@
 /**
  * For code in production, use environment variables to store the API key and URL.
  * 
- * In Next JS, you can use the .env.local file to store the API key and URL.
+ * In Next JS, you can add a .env.local file to store the API key and URL.
  *
  * const FETCH_URL = `${process.env.NEXT_PUBLIC_FETCH_URL}/auth/login`
  *

@@ -17,10 +17,7 @@ export default function Dogs() {
     resultIds: [],
     dogs: [],
   })
-  const [sortValues, setSortValues] = useState({
-    breed: 'Affenpinscher',
-    order: 'asc',
-  })
+  const [sortValues, setSortValues] = useState({ breed: '', order: 'asc' })
   const [favoriteDogIds, setFavoriteDogIds] = useState<string[]>([])
 
   const auth = useAuth() as AuthProps
@@ -88,7 +85,13 @@ export default function Dogs() {
   useEffect(() => {
     const fetchDogsWhenSorting = async () => {
       console.log('fetchDogsWhenSorting')
-      const URL = `${FETCH_URL}/dogs/search?breeds=${sortValues.breed}&sort=breed:${sortValues.order}`
+
+      // If a breed is selected, sort by breed, otherwise sort dogs alphabetically
+      const URL =
+        sortValues.breed !== ''
+          ? `${FETCH_URL}/dogs/search?size=10&breeds=${sortValues.breed}`
+          : `${FETCH_URL}/dogs/search?size=10&sort=breed:${sortValues.order}`
+
       const options = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -156,7 +159,11 @@ export default function Dogs() {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setSortValues((prevSortValues) => {
-      const newSortValues = { ...prevSortValues, breed: event.target.value }
+      // If 'All Breeds' is selected, revert to alphabetical order
+      const newSortValues = {
+        ...prevSortValues,
+        breed: event.target.value === 'All Breeds' ? '' : event.target.value,
+      }
       return newSortValues
     })
   }
@@ -165,7 +172,11 @@ export default function Dogs() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setSortValues((prevSortValues) => {
-      const newSortValues = { ...prevSortValues, order: event.target.value }
+      const newSortValues = {
+        ...prevSortValues,
+        breed: '',
+        order: event.target.value,
+      }
       return newSortValues
     })
   }
@@ -180,6 +191,7 @@ export default function Dogs() {
           handleBreedValueChange={handleBreedValueChange}
           handleOrderValueChange={handleOrderValueChange}
           sortOrderValue={sortValues.order}
+          sortBreedValue={sortValues.breed}
           favoriteDogIds={favoriteDogIds}
           setFavoriteDogIds={setFavoriteDogIds}
           pagination={pagination}
