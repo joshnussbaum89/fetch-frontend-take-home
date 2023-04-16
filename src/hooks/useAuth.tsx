@@ -14,10 +14,13 @@ export function useAuth() {
 
 function useProvideAuth() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const URL = `${FETCH_URL}/auth/login`
 
   const login = async (name: string, email: string) => {
+    setLoading(true)
+
     const options = {
       method: 'POST',
       headers: {
@@ -39,9 +42,12 @@ function useProvideAuth() {
     } catch (error) {
       console.log(error)
     }
+    setLoading(false)
   }
 
   const logout = async () => {
+    setLoading(true)
+
     const URL = `${FETCH_URL}/auth/logout`
 
     const options = {
@@ -61,11 +67,14 @@ function useProvideAuth() {
     } catch (error) {
       console.log(error)
     }
+    setLoading(false)
   }
 
   return {
     login,
     logout,
     isLoggedIn,
+    loading,
+    setLoading,
   }
 }

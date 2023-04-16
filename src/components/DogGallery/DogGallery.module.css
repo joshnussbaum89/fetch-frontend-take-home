@@ -1,0 +1,40 @@
+.dogs {
+  width: 100%;
+  max-width: var(--site-max-width);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.imageContainer {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: linear-gradient(
+    110deg,
+    var(--color-light-grey) 0%,
+    var(--color-grey) 50%,
+    var(--color-light-grey) 100%
+  );
+  background-size: 400%;
+  border-radius: 8px;
+  animation: loading 4s ease infinite;
+}
+
+.imageContainer img {
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}

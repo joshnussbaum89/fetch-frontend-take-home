@@ -1,87 +1,53 @@
-import { MouseEventHandler } from 'react'
 import SectionHeader from '@/components/SectionHeader/SectionHeader'
-import Dogs from '@/components/Dogs/Dogs'
+import DogGallery from '@/components/DogGallery/DogGallery'
+import { useDogs } from '@/hooks/useDogs'
 import styles from './DogSearch.module.css'
-import { DogData } from '@/utils/types'
+import {
+  DogSearchProps,
+  FiltersProps,
+  NavigationButtonProps,
+} from '@/utils/types'
 
-type DogSearchProps = {
-  dogData: DogData
-  loading: boolean
-  breeds: string[]
-  handleBreedValueChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
-  handleOrderValueChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  sortOrderValue: string
-  sortBreedValue: string
-  favoriteDogIds: string[]
-  setFavoriteDogIds: React.Dispatch<React.SetStateAction<string[]>>
-  pagination: (url: string) => void
-}
-
-type FiltersProps = {
-  dogData: DogData
-  breeds: string[]
-  handleBreedValueChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
-  handleOrderValueChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  sortOrderValue: string
-  sortBreedValue: string
-}
-
-type NavigationButtonProps = {
-  text: string
-  buttonStyles: string
-  handlePagination: MouseEventHandler<HTMLButtonElement>
-}
-
-export default function DogSearch({
-  dogData,
-  loading,
-  breeds,
-  handleBreedValueChange,
-  handleOrderValueChange,
-  sortOrderValue,
-  sortBreedValue,
-  favoriteDogIds,
-  setFavoriteDogIds,
-  pagination,
-}: DogSearchProps) {
-  const previousButtonStyles = dogData.previous
-    ? `${styles.navButton}`
-    : `${styles.navButton} ${styles.disabled}`
-
-  const nextButtonStyles = dogData.next
-    ? `${styles.navButton}`
-    : `${styles.navButton} ${styles.disabled}`
+export default function DogSearch() {
+  const {
+    breeds,
+    sortValues,
+    favoriteDogIds,
+    dogData,
+    pagination,
+    handleFindMatch,
+    handleBreedValueChange,
+    handleOrderValueChange,
+    setFavoriteDogIds,
+  } = useDogs() as DogSearchProps
 
   return (
     <>
       <SectionHeader text="Click Below To Find Your New Best Friend!" />
-      {/* <ul>
-        <li>Use filters to find your favorite dogs</li>
-        <li>Select your favorite by clicking dog photos</li>
-        <li>Click &quot;Find Match&quot; to see your match!</li>
-      </ul> */}
+      {favoriteDogIds.length > 0 && (
+        <button onClick={handleFindMatch}>Find A Match!</button>
+      )}
       <div className={styles.wrapper}>
         <NavigationButton
           text="Previous"
-          buttonStyles={previousButtonStyles}
+          isActive={dogData.previous !== undefined}
           handlePagination={() => pagination(dogData.previous)}
         />
         <Filters
           dogData={dogData}
           handleBreedValueChange={handleBreedValueChange}
           handleOrderValueChange={handleOrderValueChange}
-          sortOrderValue={sortOrderValue}
-          sortBreedValue={sortBreedValue}
+          sortOrderValue={sortValues!.order}
+          sortBreedValue={sortValues!.breed}
           breeds={breeds}
         />
         <NavigationButton
           text="Next"
-          buttonStyles={nextButtonStyles}
+          isActive={dogData.next !== undefined}
           handlePagination={() => pagination(dogData.next)}
         />
       </div>
-      <Dogs
-        loading={loading}
+      <DogGallery
         dogs={dogData?.dogs}
         favoriteDogIds={favoriteDogIds}
         setFavoriteDogIds={setFavoriteDogIds}
@@ -121,8 +87,8 @@ function Filters({
           <div className={styles.filter}>
             <label htmlFor="sort">Sort:</label>
             <input
-              type="radio"
               id="asc"
+              type="radio"
               name="sort"
               value="asc"
               checked={sortOrderValue === 'asc'}
@@ -130,8 +96,8 @@ function Filters({
             />
             <label htmlFor="asc">asc</label>
             <input
-              type="radio"
               id="desc"
+              type="radio"
               name="sort"
               value="desc"
               checked={sortOrderValue === 'desc'}
@@ -147,9 +113,13 @@ function Filters({
 
 function NavigationButton({
   text,
-  buttonStyles,
+  isActive,
   handlePagination,
 }: NavigationButtonProps) {
+  const buttonStyles = isActive
+    ? `${styles.navButton}`
+    : `${styles.navButton} ${styles.disabled}`
+
   return (
     <button className={buttonStyles} onClick={handlePagination}>
       {text}

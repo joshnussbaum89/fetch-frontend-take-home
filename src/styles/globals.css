@@ -10,8 +10,8 @@
 
   --color-black: #11052f;
   --color-white: #ffffff;
-  --color-white-transparent: #fcfcfcee;
-  --color-grey: #9c9c9c;
+  --color-grey: #b7b7b7;
+  --color-light-grey: #f2f2f2;
   --color-purple: #2e1679;
   --color-light-purple: #a47ad1;
   --color-yellow: #ffb251;
@@ -98,17 +98,5 @@ select {
   }
   60% {
     transform: translateY(-0.25rem) rotate(225deg);
-  }
-}
-
-@keyframes circle {
-  0% {
-    box-shadow: none;
-  }
-  50% {
-    box-shadow: 0 0 10px var(--color-purple);
-  }
-  100% {
-    box-shadow: none;
   }
 }
