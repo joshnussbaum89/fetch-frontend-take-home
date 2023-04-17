@@ -32,6 +32,6 @@ I had some issues fetching data from API on Safari desktop. However, all other b
 ## Features that would be nice in this app
 
 - A "Reset" button that removes a users favorite dogs
-- Some more fun styling (fonts, landing page, instructions, filters, etc.)
+- Some more fun styling (fonts,landing page, instructions, filters, etc.)
 - Improve copy + user flow
 - Testing

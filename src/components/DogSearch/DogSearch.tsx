@@ -48,7 +48,7 @@ export default function DogSearch() {
         sortBreedValue={sortValues!.breed}
         breeds={breeds}
       />
-      <div className={styles.wrapper}>
+      <div className={styles.navigationContainer}>
         <NavigationButton
           text="Previous"
           isActive={dogData.previous !== undefined}

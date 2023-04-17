@@ -5,11 +5,17 @@ import { useAuth } from '@/hooks/useAuth'
 
 const dogsContext = createContext({})
 
+/**
+ * Context provider
+ */
 export function DogsProvider({ children }: React.PropsWithChildren<{}>) {
   const dogs = useProvideDogs()
   return <dogsContext.Provider value={dogs}>{children}</dogsContext.Provider>
 }
 
+/**
+ * Hook for child components to access dog context
+ */
 export function useDogs() {
   return useContext(dogsContext)
 }
@@ -29,6 +35,9 @@ function useProvideDogs() {
   const { loading, setLoading, isLoggedIn } = useAuth() as LoadingProps
 
   useEffect(() => {
+    /**
+     * Fetch all available dog breeds when user logs in
+     */
     const fetchAllAvailableBreeds = async () => {
       const URL = `${FETCH_URL}/dogs/breeds`
       const options = {
@@ -56,6 +65,9 @@ function useProvideDogs() {
   }, [isLoggedIn])
 
   useEffect(() => {
+    /**
+     * Fetch dogs when ids update
+     */
     const fetchDogsWhenIdsUpdate = async () => {
       setLoading(true)
 
@@ -90,8 +102,10 @@ function useProvideDogs() {
     }
   }, [dogData.resultIds, setLoading, isLoggedIn])
 
-  // If user selects a breed, sort by selected breed. Otherwise, sort breeds alphabetically
   useEffect(() => {
+    /**
+     * If user selects a breed, sort by selected breed. Otherwise, sort breeds alphabetically
+     */
     const fetchDogsWhenSorting = async () => {
       const URL =
         sortValues.breed !== ''
@@ -132,7 +146,7 @@ function useProvideDogs() {
   }, [sortValues.breed, sortValues.order, isLoggedIn])
 
   /**
-   * If 'All Breeds' is selected, revert to alphabetical order. Otherwise, sort by selected breed.
+   * If 'All Breeds' is selected, revert to alphabetical order. Otherwise, sort by selected breed
    */
   const handleBreedValueChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -147,7 +161,7 @@ function useProvideDogs() {
   }
 
   /**
-   * Sort breeds in ascending or descending order.
+   * Sort breeds in ascending or descending order
    */
   const handleOrderValueChange = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -193,6 +207,9 @@ function useProvideDogs() {
     }
   }
 
+  /**
+   * Find match from users favorite dogs
+   */
   const handleFindMatch = async () => {
     if (favoriteDogIds.length > 0) {
       const URL = `${FETCH_URL}/dogs/match`
@@ -223,7 +240,7 @@ function useProvideDogs() {
   }
 
   /**
-   * Reset state when user logs out.
+   * Reset state when user logs out
    */
   const handleResetState = () => {
     setSortValues({ breed: '', order: 'asc' })

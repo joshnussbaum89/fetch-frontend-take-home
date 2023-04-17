@@ -1,6 +1,8 @@
 :root {
+  /* Containers */
   --site-max-width: 1200px;
 
+  /* Sizes */
   --size-extra-small: 1rem;
   --size-small: 1.25rem;
   --size-medium: 1.5rem;
@@ -8,6 +10,7 @@
   --size-extra-large: 3rem;
   --size-mega-large: 4rem;
 
+  /* Colors */
   --color-black: #11052f;
   --color-white: #ffffff;
   --color-white-transparent: #fffaff90;
@@ -18,6 +21,7 @@
   --color-yellow: #ffb251;
   --color-light-yellow: #ffc051;
 
+  /* Transitions */
   --transition-normal: all 0.3s ease-in-out;
 }
 

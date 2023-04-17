@@ -22,7 +22,7 @@
   cursor: not-allowed;
 }
 
-.wrapper {
+.navigationContainer {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -32,7 +32,7 @@
 }
 
 @media (min-width: 1024px) {
-  .wrapper {
+  .navigationContainer {
     align-items: center;
   }
 }

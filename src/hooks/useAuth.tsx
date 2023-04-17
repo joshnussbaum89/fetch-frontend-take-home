@@ -3,11 +3,17 @@ import { FETCH_URL, FETCH_API_KEY } from '../utils/constants'
 
 const authContext = createContext({})
 
+/**
+ * Context provider
+ */
 export function AuthProvider({ children }: React.PropsWithChildren<{}>) {
   const auth = useProvideAuth()
   return <authContext.Provider value={auth}>{children}</authContext.Provider>
 }
 
+/**
+ * Hook for child components to access auth context
+ */
 export function useAuth() {
   return useContext(authContext)
 }
@@ -18,6 +24,9 @@ function useProvideAuth() {
 
   const URL = `${FETCH_URL}/auth/login`
 
+  /**
+   * Login user with name and email
+   */
   const login = async (name: string, email: string) => {
     setLoading(true)
 
@@ -45,6 +54,9 @@ function useProvideAuth() {
     setLoading(false)
   }
 
+  /**
+   * Logout user
+   */
   const logout = async () => {
     setLoading(true)
 
