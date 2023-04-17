@@ -1,5 +1,5 @@
-import { useRef } from 'react'
 import Image from 'next/image'
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io'
 import styles from './DogGallery.module.css'
 import { DogGalleryProps } from '@/utils/types'
 
@@ -8,8 +8,6 @@ export default function DogGallery({
   favoriteDogIds,
   setFavoriteDogIds,
 }: DogGalleryProps) {
-  const dogRef = useRef<HTMLDivElement>(null)
-
   /**
    * Collect favorite dog IDs in state to find match
    */
@@ -30,8 +28,11 @@ export default function DogGallery({
       {dogs.map((dog) => (
         <div
           key={dog.id}
-          ref={dogRef}
-          className={styles.dog}
+          className={
+            favoriteDogIds.includes(dog.id)
+              ? `${styles.dog} ${styles.chosen}`
+              : `${styles.dog}`
+          }
           data-dog-id={dog.id}
           onClick={handleAddToFavoriteDogs}
         >
@@ -44,6 +45,7 @@ export default function DogGallery({
             <p>age: {dog.age}</p>
             <p>zip code: {dog.zip_code}</p>
           </div>
+          <IoIosCheckmarkCircleOutline />
         </div>
       ))}
     </article>

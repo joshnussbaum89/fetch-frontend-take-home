@@ -6,6 +6,41 @@
   gap: 2rem;
 }
 
+.dog {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid var(--color-black);
+  border-radius: 8px;
+  transition: var(--transition-normal);
+  cursor: pointer;
+}
+
+.dog svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 50px;
+  height: 50px;
+  visibility: hidden;
+  opacity: 0;
+  transition: var(--transition-normal);
+  fill: var(--color-light-purple);
+}
+
+.dog:hover,
+.dog.chosen {
+  transform: scale(1.01);
+  border: 1px solid var(--color-light-purple);
+  box-shadow: 0 0 10px var(--color-grey);
+}
+
+.dog.chosen svg {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
 .imageContainer {
   position: relative;
   height: 350px;

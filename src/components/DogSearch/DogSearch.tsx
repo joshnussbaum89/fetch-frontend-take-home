@@ -23,6 +23,16 @@ export default function DogSearch() {
   return (
     <>
       <SectionHeader text="Click Below To Find Your New Best Friend!" />
+      <h3>Instructions:</h3>
+      <ol className={styles.instructions}>
+        <li>Sort dogs by one breed at a time, or all breeds alphabetically</li>
+        <li>Click on a dog to your favorites</li>
+        <li>You can choose as many as you like</li>
+        <li>
+          Click &quot;Find Your Match&quot; in the navigation bar to see your
+          match!
+        </li>
+      </ol>
       <div className={styles.wrapper}>
         <NavigationButton
           text="Previous"

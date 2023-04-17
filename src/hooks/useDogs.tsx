@@ -26,7 +26,7 @@ function useProvideDogs() {
   })
 
   // Loading state for application
-  const { loading, setLoading } = useAuth() as LoadingProps
+  const { loading, setLoading, isLoggedIn } = useAuth() as LoadingProps
 
   useEffect(() => {
     const fetchAllAvailableBreeds = async () => {
@@ -50,8 +50,10 @@ function useProvideDogs() {
         console.log(error)
       }
     }
-    fetchAllAvailableBreeds()
-  }, [])
+    if (isLoggedIn) {
+      fetchAllAvailableBreeds()
+    }
+  }, [isLoggedIn])
 
   useEffect(() => {
     const fetchDogsWhenIdsUpdate = async () => {
@@ -83,8 +85,10 @@ function useProvideDogs() {
       }
       setLoading(false)
     }
-    fetchDogsWhenIdsUpdate()
-  }, [dogData.resultIds, setLoading])
+    if (isLoggedIn) {
+      fetchDogsWhenIdsUpdate()
+    }
+  }, [dogData.resultIds, setLoading, isLoggedIn])
 
   // If user selects a breed, sort by selected breed. Otherwise, sort breeds alphabetically
   useEffect(() => {
@@ -122,8 +126,10 @@ function useProvideDogs() {
         console.log(error)
       }
     }
-    fetchDogsWhenSorting()
-  }, [sortValues.breed, sortValues.order])
+    if (isLoggedIn) {
+      fetchDogsWhenSorting()
+    }
+  }, [sortValues.breed, sortValues.order, isLoggedIn])
 
   /**
    * If 'All Breeds' is selected, revert to alphabetical order. Otherwise, sort by selected breed.

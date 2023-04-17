@@ -61,6 +61,7 @@ type AuthProps = {
 type LoadingProps = {
   loading: boolean
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  isLoggedIn: boolean
 }
 
 export type {
