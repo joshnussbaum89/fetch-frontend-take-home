@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { IoIosCheckmarkCircleOutline } from 'react-icons/io'
+import { IoIosCheckmarkCircle } from 'react-icons/io'
 import styles from './DogGallery.module.css'
 import { DogGalleryProps } from '@/utils/types'
 
@@ -45,7 +45,7 @@ export default function DogGallery({
             <p>age: {dog.age}</p>
             <p>zip code: {dog.zip_code}</p>
           </div>
-          <IoIosCheckmarkCircleOutline />
+          <IoIosCheckmarkCircle />
         </div>
       ))}
     </article>

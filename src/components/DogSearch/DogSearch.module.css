@@ -1,5 +1,21 @@
+.instructionsHeader {
+  margin-bottom: 1rem;
+}
+
 .instructions {
+  margin: 0 auto 3rem;
+}
+
+.matchButton {
   margin-bottom: 3rem;
+  transition: var(--transition-normal);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.matchButton.hidden {
+  background-color: var(--color-grey);
+  border: 1px solid var(--color-grey);
+  cursor: not-allowed;
 }
 
 .wrapper {
@@ -19,9 +35,10 @@
 
 .navButton {
   padding: 0;
+  font-size: var(--size-extra-small);
+  text-decoration: underline;
   color: var(--color-purple);
   background-color: var(--color-white);
-  text-decoration: underline;
   border: none;
   cursor: pointer;
 }
@@ -41,11 +58,11 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 2rem;
-  width: 50%;
   max-width: var(--site-max-width);
+  margin-bottom: 3rem;
 }
 
 @media (min-width: 1024px) {
@@ -60,4 +77,20 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-0.5rem);
+  }
+  60% {
+    transform: translateY(-0.25rem);
+  }
 }

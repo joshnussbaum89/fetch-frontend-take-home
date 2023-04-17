@@ -194,29 +194,31 @@ function useProvideDogs() {
   }
 
   const handleFindMatch = async () => {
-    const URL = `${FETCH_URL}/dogs/match`
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify(favoriteDogIds),
-    } as RequestInit
+    if (favoriteDogIds.length > 0) {
+      const URL = `${FETCH_URL}/dogs/match`
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(favoriteDogIds),
+      } as RequestInit
 
-    try {
-      setLoading(true)
-      const response = await fetch(URL, options)
+      try {
+        setLoading(true)
+        const response = await fetch(URL, options)
 
-      if (!response.ok) {
-        throw new Error('Error finding match!')
+        if (!response.ok) {
+          throw new Error('Error finding match!')
+        }
+
+        const data = await response.json()
+        setDogData((prevDogData) => {
+          const newDogData = { ...prevDogData, resultIds: [data.match] }
+          return newDogData
+        })
+      } catch (error) {
+        console.log(error)
       }
-
-      const data = await response.json()
-      setDogData((prevDogData) => {
-        const newDogData = { ...prevDogData, resultIds: [data.match] }
-        return newDogData
-      })
-    } catch (error) {
-      console.log(error)
     }
   }
 
