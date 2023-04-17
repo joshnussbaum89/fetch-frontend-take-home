@@ -1,15 +1,17 @@
 import Link from 'next/link'
 import styles from './Navigation.module.css'
 import { useAuth } from '@/hooks/useAuth'
-
-interface AuthProps {
-  login: Function
-  logout: Function
-  isLoggedIn: boolean
-}
+import { useDogs } from '@/hooks/useDogs'
+import { AuthProps } from '@/utils/types'
 
 export default function Navigation() {
   const auth = useAuth() as AuthProps
+  const { handleResetState } = useDogs() as { handleResetState: Function }
+
+  const handleLogout = () => {
+    auth.logout()
+    handleResetState()
+  }
 
   return (
     <nav className={styles.navigation}>
@@ -25,7 +27,7 @@ export default function Navigation() {
               Log in
             </Link>
           ) : (
-            <Link className="fetch-cta" href="/" onClick={() => auth.logout()}>
+            <Link className="fetch-cta" href="/" onClick={handleLogout}>
               Log out
             </Link>
           )}

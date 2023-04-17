@@ -125,6 +125,37 @@ function useProvideDogs() {
     fetchDogsWhenSorting()
   }, [sortValues.breed, sortValues.order])
 
+  /**
+   * If 'All Breeds' is selected, revert to alphabetical order. Otherwise, sort by selected breed.
+   */
+  const handleBreedValueChange = async (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSortValues((prevSortValues) => {
+      const newSortValues = {
+        ...prevSortValues,
+        breed: event.target.value === 'All Breeds' ? '' : event.target.value,
+      }
+      return newSortValues
+    })
+  }
+
+  /**
+   * Sort breeds in ascending or descending order.
+   */
+  const handleOrderValueChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSortValues((prevSortValues) => {
+      const newSortValues = {
+        ...prevSortValues,
+        breed: '',
+        order: event.target.value,
+      }
+      return newSortValues
+    })
+  }
+
   const pagination = async (path: string) => {
     const URL = `${FETCH_URL}${path}`
     const options = {
@@ -184,34 +215,11 @@ function useProvideDogs() {
   }
 
   /**
-   * If 'All Breeds' is selected, revert to alphabetical order. Otherwise, sort by selected breed.
+   * Reset state when user logs out.
    */
-  const handleBreedValueChange = async (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setSortValues((prevSortValues) => {
-      const newSortValues = {
-        ...prevSortValues,
-        breed: event.target.value === 'All Breeds' ? '' : event.target.value,
-      }
-      return newSortValues
-    })
-  }
-
-  /**
-   * Sort breeds in ascending or descending order.
-   */
-  const handleOrderValueChange = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSortValues((prevSortValues) => {
-      const newSortValues = {
-        ...prevSortValues,
-        breed: '',
-        order: event.target.value,
-      }
-      return newSortValues
-    })
+  const handleResetState = () => {
+    setSortValues({ breed: '', order: 'asc' })
+    setFavoriteDogIds([])
   }
 
   return {
@@ -220,10 +228,11 @@ function useProvideDogs() {
     sortValues,
     favoriteDogIds,
     dogData,
-    pagination,
-    handleFindMatch,
     handleBreedValueChange,
     handleOrderValueChange,
+    pagination,
+    handleFindMatch,
     setFavoriteDogIds,
+    handleResetState,
   }
 }

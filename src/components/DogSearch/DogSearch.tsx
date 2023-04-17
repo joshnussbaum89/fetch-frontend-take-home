@@ -13,20 +13,16 @@ export default function DogSearch() {
     breeds,
     sortValues,
     favoriteDogIds,
-    dogData,
-    pagination,
-    handleFindMatch,
     handleBreedValueChange,
     handleOrderValueChange,
+    pagination,
+    dogData,
     setFavoriteDogIds,
   } = useDogs() as DogSearchProps
 
   return (
     <>
       <SectionHeader text="Click Below To Find Your New Best Friend!" />
-      {favoriteDogIds.length > 0 && (
-        <button onClick={handleFindMatch}>Find A Match!</button>
-      )}
       <div className={styles.wrapper}>
         <NavigationButton
           text="Previous"
