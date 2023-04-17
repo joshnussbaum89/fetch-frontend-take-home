@@ -1,9 +1,13 @@
-.instructionsHeader {
+.header {
   margin-bottom: 1rem;
 }
 
 .instructions {
   margin: 0 auto 3rem;
+}
+
+.instructions li {
+  margin-bottom: 0.5rem;
 }
 
 .matchButton {
@@ -43,15 +47,18 @@
   cursor: pointer;
 }
 
-.navButton:hover {
-  color: var(--color-light-purple);
-  text-decoration: none;
+@media (min-width: 768px) {
+  .navButton:hover {
+    color: var(--color-light-purple);
+    text-decoration: none;
+  }
 }
 
 .navButton.disabled {
   color: var(--color-grey);
   text-decoration: none;
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 .filterContainer {
@@ -62,13 +69,14 @@
   justify-content: center;
   gap: 2rem;
   max-width: var(--site-max-width);
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem 0;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .filterContainer {
     flex-direction: row;
     align-items: center;
+    margin: 0 auto 3rem;
   }
 }
 

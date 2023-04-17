@@ -7,3 +7,13 @@
   background-color: var(--color-purple);
   color: var(--color-white);
 }
+
+.navigation li:first-child {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .navigation li:first-child {
+    display: block;
+  }
+}

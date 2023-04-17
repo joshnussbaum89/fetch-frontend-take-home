@@ -24,7 +24,7 @@ export default function DogSearch() {
   return (
     <>
       <SectionHeader text="Pup Finder" />
-      <h3 className={styles.instructionsHeader}>Instructions:</h3>
+      <h3 className={styles.header}>Instructions:</h3>
       <ol className={styles.instructions}>
         <li>Sort dogs one breed at a time, or all breeds alphabetically</li>
         <li>Click on as many dogs as you like to add to your favorites</li>
@@ -56,7 +56,7 @@ export default function DogSearch() {
         />
         <NavigationButton
           text="Next"
-          isActive={dogData.next !== undefined}
+          isActive={dogData.resultIds.length === 9}
           handlePagination={() => pagination(dogData.next)}
         />
       </div>

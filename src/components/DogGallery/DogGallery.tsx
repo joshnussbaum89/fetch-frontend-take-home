@@ -24,7 +24,7 @@ export default function DogGallery({
   }
 
   return (
-    <article className={styles.dogs}>
+    <article className={styles.dogContainer}>
       {dogs.map((dog) => (
         <div
           key={dog.id}
@@ -41,9 +41,9 @@ export default function DogGallery({
           </div>
           <div>
             <h3>{dog.name}</h3>
-            <p>breed: {dog.breed}</p>
-            <p>age: {dog.age}</p>
-            <p>zip code: {dog.zip_code}</p>
+            <p>Breed: {dog.breed}</p>
+            <p>Age: {dog.age}</p>
+            <p>Zip Code: {dog.zip_code}</p>
           </div>
           <IoIosCheckmarkCircle />
         </div>
