@@ -1,4 +1,5 @@
 import React, { useState, useContext, createContext, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { FETCH_URL } from '@/utils/constants'
 import { LoadingProps, DogData } from '@/utils/types'
 import { useAuth } from '@/hooks/useAuth'
@@ -33,6 +34,9 @@ function useProvideDogs() {
 
   // Loading state for application
   const { loading, setLoading, isLoggedIn } = useAuth() as LoadingProps
+
+  // Next router
+  const router = useRouter()
 
   useEffect(() => {
     /**
@@ -233,6 +237,9 @@ function useProvideDogs() {
           const newDogData = { ...prevDogData, resultIds: [data.match] }
           return newDogData
         })
+
+        // Send user to "Match" page
+        router.push('/match')
       } catch (error) {
         console.log(error)
       }
