@@ -237,9 +237,6 @@ function useProvideDogs() {
           const newDogData = { ...prevDogData, resultIds: [data.match] }
           return newDogData
         })
-
-        // Send user to "Match" page
-        router.push('/match')
       } catch (error) {
         console.log(error)
       }

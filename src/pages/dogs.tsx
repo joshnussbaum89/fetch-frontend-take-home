@@ -1,7 +1,6 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import DogSearch from '@/components/DogSearch/DogSearch'
-import SectionHeader from '@/components/SectionHeader/SectionHeader'
+import Restricted from '@/components/Restricted/Restricted'
 import { useAuth } from '@/hooks/useAuth'
 import { AuthProps } from '@/utils/types'
 
@@ -23,16 +22,7 @@ export default function Dogs() {
         />
         <meta property="og:type" content="website" />
       </Head>
-      {auth.isLoggedIn ? (
-        <DogSearch />
-      ) : (
-        <>
-          <SectionHeader text="You must be logged in to view this page" />
-          <Link href="/login" className="fetch-cta button-primary">
-            Log In
-          </Link>
-        </>
-      )}
+      {auth.isLoggedIn ? <DogSearch /> : <Restricted />}
     </>
   )
 }

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import SectionHeader from '@/components/SectionHeader/SectionHeader'
 import DogGallery from '@/components/DogGallery/DogGallery'
 import { useDogs } from '@/hooks/useDogs'
@@ -30,7 +31,8 @@ export default function DogSearch() {
         <li>Click on as many dogs as you like to add to your favorites</li>
         <li>Click &quot;Find Your Match&quot; below to see your match!</li>
       </ol>
-      <button
+      <Link
+        href="/match"
         onClick={handleFindMatch}
         className={
           favoriteDogIds.length > 0
@@ -38,8 +40,8 @@ export default function DogSearch() {
             : `${styles.matchButton} ${styles.hidden} fetch-cta button-primary`
         }
       >
-        Find A Match!
-      </button>
+        Find Your Match!
+      </Link>
       <Filters
         dogData={dogData}
         handleBreedValueChange={handleBreedValueChange}

@@ -11,14 +11,18 @@ export default function DogGallery({
   /**
    * Collect favorite dog IDs in state to find match
    */
-  const handleAddToFavoriteDogs = (
+  const handleDogSelection = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     const id = event.currentTarget.getAttribute('data-dog-id')
-    const idExistsAndIsNotAlreadyInFavorites =
-      id && !favoriteDogIds.includes(id)
+    const idIsAlreadyInFavorites = id && favoriteDogIds.includes(id)
+    const idIsNotAlreadyInFavorites = id && !favoriteDogIds.includes(id)
 
-    if (idExistsAndIsNotAlreadyInFavorites) {
+    if (idIsAlreadyInFavorites) {
+      setFavoriteDogIds((prev) => prev.filter((dogId) => dogId !== id))
+    }
+
+    if (idIsNotAlreadyInFavorites) {
       setFavoriteDogIds((prev) => [...prev, id])
     }
   }
@@ -34,7 +38,7 @@ export default function DogGallery({
               : `${styles.dog}`
           }
           data-dog-id={dog.id}
-          onClick={handleAddToFavoriteDogs}
+          onClick={handleDogSelection}
         >
           <div className={styles.imageContainer}>
             <Image src={dog.img} alt={`${dog.breed} named ${dog.name}`} fill />

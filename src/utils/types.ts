@@ -34,6 +34,7 @@ type DogSearchProps = {
   favoriteDogIds: string[]
   setFavoriteDogIds: React.Dispatch<React.SetStateAction<string[]>>
   pagination: (url: string) => void
+  handleResetState: () => void
   handleFindMatch: () => void
 }
 
