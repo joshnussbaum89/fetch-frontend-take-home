@@ -19,7 +19,7 @@
 .matchButton.hidden {
   background-color: var(--color-grey);
   border: 1px solid var(--color-grey);
-  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .navigationContainer {
